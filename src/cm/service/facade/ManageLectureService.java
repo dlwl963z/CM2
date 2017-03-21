@@ -3,6 +3,7 @@ package cm.service.facade;
 import java.util.List;
 
 import cm.domain.Building;
+import cm.domain.ClassTime;
 import cm.domain.Lecture;
 import cm.domain.Professor;
 
@@ -18,7 +19,7 @@ public interface ManageLectureService {
 	
 	List<String> selectLectureDetail(int lectureId);
 	
-	Building selectBuilding(int lectureId);
+	List<Building> selectBuildings(int lectureId);
 	
 	Professor selectProfessor(int professorId);
 	
@@ -28,7 +29,7 @@ public interface ManageLectureService {
 	
 	Boolean removeLecture(int lectureId);
 	
-	List<Lecture> selectLectureByLectureId(int professorId);
+	List<Lecture> selectLectureByProfessorId(int professorId);
 	
-	
+	ClassTime selectClassTimeBylectureId(int lectureId);
 }

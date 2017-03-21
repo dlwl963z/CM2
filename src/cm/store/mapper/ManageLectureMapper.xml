@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+ <mapper namespace="mapper.ManageLectureMapper">
+ 	<resultMap type="Lecture" id="LectureMap">
+		 	<id property="id" column="lecture_id"/>
+ 			<result property="etc" column="etc"/>
+ 			<result property="code" column="lecture_code"/>
+ 			<result property="name" column="lecture_name"/>
+ 			<result property="grade" column="grade"/>
+ 			<result property="school" column="school"/>
+ 			<result property="department" column="department"/>
+ 			<result property="division" column="division"/>
+ 			
+ 			<association property="classTime" column="class_time_id"
+ 			select="classTimeMap.searchClassTimeBylectureId"
+ 			javaType="classTime" jdbcType="NUMERIC"/>
+ 			<association property="professor" column="professor_id"
+ 			select="professorMap.searchProfessor"
+ 			javaType="professor" jdbcType="NUMERIC"/>
+ 			<collection property="buildings" column="lecture_id" ofType="building"
+ 			select="buildingMap.searchBuildings"
+ 			javaType="ArrayList" jdbcType="NUMERIC"/>
+ 	</resultMap>
+ 	<resultMap type="ClassTime" id="classTimeMap">
+ 		<id property="id" column="class_time_id"/>
+ 		<result property="firstDay" column="first_day"/>
+ 		<result property="firstTime" column="first_time"/>
+ 		<result property="secondDay" column="second_day"/>
+ 		<result property="secondTime" column="second_time"/>
+ 		<result property="thirdDay" column="third_day"/>
+ 		<result property="thirdTime" column="third_time"/>
+ 		<result property="fourthDay" column="fourth_day"/>
+ 		<result property="fourthTime" column="fourth_time"/>
+ 		<result property="fifthDay" column="fifth_day"/>
+ 		<result property="fifthTime" column="fifth_time"/>
+ 		<result property="sixthDay" column="sixth_day"/>
+ 		<result property="sixthTime" column="sixth_time"/>
+ 	</resultMap>
+ 	<resultMap type="Professor" id="professorMap">
+ 		<id property="id" column="professor_id"/>
+ 		<result property="name" column="professor_name"/>
+ 		<result property="school" column="school"/>
+ 		<result property="department" column="department"/>
+ 		<result property="email" column="email"/>
+ 	</resultMap>
+ 	<resultMap type="Building" id="buildingMap">
+ 		<id property="id" column="building_id"/>
+ 		<result property="name" column="building_name"/>
+ 		<result property="latitude" column="latitude"/>
+ 		<result property="roomNumber" column="room_num"/>
+ 		<result property="longitude" column="longitude"/>
+ 	</resultMap>
+ 	<select id="searchClassTimeBylectureId" resultMap="classTimeMap">
+ 		SELECT class_time_id, lecture_id, first_day, first_time, second_day, second_time,
+ 		 third_day, third_time, fourth_day, fourth_time, fifth_day, fifth_time, sixth_day, sixth_time
+ 		FROM class_time_tb
+ 		WHERE lecture_id = #{lecture_id}
+ 	</select>
+ 	
+ 	<select id="searchProfessor" resultMap="professorMap">
+ 		SELECT professor_id,professor_name, school, department, email
+ 		FROM professor_tb
+ 		WHERE professor_id = #{professor_id}
+ 	</select>
+ 	
+ 	<select id="searchBuildings" resultType="Building" resultMap="LectureMap">
+ 		SELECT b.building_id,b.building_name,b.latitude, b.room_num, b.longitude
+ 		FROM lecture_classroom_tb l, building_tb b
+ 		WHERE b.building_id=l.building_id AND l.lecture_id = #{lecture_id}
+ 	</select>
+ 	
+ 	<select id="searchSchoolAll" resultMap="LectureMap">
+ 		SELECT school
+ 		FROM lecture_tb
+	</select>
+	<select id="searchDepartmentBySchool" resultMap="LectureMap">
+		SELECT department
+ 		FROM lecture_tb
+		WHERE school = #{school}
+	</select>
+	<select id="searchDivisionBySchool" resultMap="LectureMap">
+		SELECT division
+ 		FROM lecture_tb
+		WHERE school = #{school}
+	</select>
+	<select id="searchLecturelist" resultMap="LectureMap">
+		SELECT ol.lecture_id, l.lecture_code, ol.professor_id, ol.semester, ol.year, l.credit, l.school, l.department, l.division, l.grade
+		FROM lecture_tb l, opened_lecture_tb ol
+		WHERE l.lecture_code = ol.lecture_code
+		AND l.school = #{school}
+		AND l.department = #{department}
+		AND l.division = #{division}
+		AND l.grade = #{grade}
+		AND l.lecture_name LIKE '%'||#{name}||'%' 
+	</select>
+	<select id="searchLectureDetail" resultMap="LectureMap">
+		SELECT ol.lecture_id, l.lecture_code, ol.professor_id, ol.semester, ol.year, l.credit, l.school, l.department, l.division, l.grade
+		FROM lecture_tb l, opened_lecture_tb ol
+		WHERE l.lecture_code = ol.lecture_code
+		AND ol.lecture_id = #{id}
+	</select>
+	<insert id="insertLecture">
+	</insert>
+	<update id="modifyLecture">
+	</update>
+	<delete id="deleteLecture">
+	</delete>
+ 	
+ 	
+ 	
+	
+	
+ </mapper>   
+    

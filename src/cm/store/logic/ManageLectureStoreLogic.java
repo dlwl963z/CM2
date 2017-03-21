@@ -3,15 +3,22 @@ package cm.store.logic;
 import java.util.List;
 
 import cm.domain.Building;
+import cm.domain.ClassTime;
 import cm.domain.Lecture;
 import cm.domain.Professor;
 import cm.store.facade.ManageLectureStore;
 
 public class ManageLectureStoreLogic implements ManageLectureStore{
-
+	
+	
+	
+	
 	@Override
 	public List<String> searchSchoolAll() {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
 		return null;
 	}
 
@@ -40,8 +47,9 @@ public class ManageLectureStoreLogic implements ManageLectureStore{
 		return null;
 	}
 
+
 	@Override
-	public Building searchBuilding(int lectureId) {
+	public List<Building> searchBuildings(int lectureId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -71,9 +79,16 @@ public class ManageLectureStoreLogic implements ManageLectureStore{
 	}
 
 	@Override
-	public List<Lecture> searchLectureByLectureId(int professorId) {
+	public List<Lecture> searchLectureByProfessorId(int professorId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ClassTime searchClassTimeBylectureId(int lectureId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }

@@ -14,8 +14,16 @@ public class User {
 	private List<Timetable> timetableList;
 	private List<Lecture> wishList;
 	private String semester;
+	private Requirement requirement;
 	
-	
+
+	public Requirement getRequirement() {
+		return requirement;
+	}
+
+	public void setRequirement(Requirement requirement) {
+		this.requirement = requirement;
+	}
 
 	public User() {
 	}

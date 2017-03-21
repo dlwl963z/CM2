@@ -3,22 +3,24 @@ package cm.store.mapper;
 import java.util.List;
 
 import cm.domain.Building;
+import cm.domain.ClassTime;
 import cm.domain.Lecture;
 import cm.domain.Professor;
 
 public interface ManageLectureMapper {
 	
-	List<String> searchSchoolAll();
+List<String> searchSchoolAll();
 	
 	List<String> searchDepartmentBySchool(String school);
 	
 	List<String> searchDivisionBySchool(String school);
 	
-	List<Lecture> searchLecturelist(String school,String department,int year,String division,String lectureName);
+	List<Lecture> searchLecturelist(String school, String department, int year, String division,
+			String lectureName);
 	
 	Lecture searchLectureDetail(int lectureId);
 	
-	Building searchBuilding(int lectureId);
+	List<Building> searchBuildings(int lectureId);
 	
 	Professor searchProfessor(int professorId);
 	
@@ -28,6 +30,8 @@ public interface ManageLectureMapper {
 	
 	Boolean deleteLecture(int lectureId);
 	
-	List<Lecture> searchLectureByLectureId(int professorId);
+	List<Lecture> searchLectureByProfessorId(int professorId);
+	
+	ClassTime searchClassTimeBylectureId(int lectureId);
 
 }
