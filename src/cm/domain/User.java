@@ -13,8 +13,19 @@ public class User {
 	private String password;
 	private List<Timetable> timetableList;
 	private List<Lecture> wishList;
+	private String semester;
 	
+	
+
 	public User() {
+	}
+	
+	public String getSemester() {
+		return semester;
+	}
+
+	public void setSemester(String semester) {
+		this.semester = semester;
 	}
 
 	public String getId() {

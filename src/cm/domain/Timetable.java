@@ -8,8 +8,19 @@ public class Timetable {
 	private String name;
 	private List<Lecture> lectures;
 	private int registYear;
+	private String semester;
 	
+	
+
 	public Timetable() {
+	}
+	
+	public String getSemester() {
+		return semester;
+	}
+
+	public void setSemester(String semester) {
+		this.semester = semester;
 	}
 
 	public int getId() {
