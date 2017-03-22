@@ -9,7 +9,7 @@ public class Lecture {
 	private ClassTime classTime;
 	private String code;
 	private String name;
-	private int grade;
+	private String grade;
 	private String school;
 	private String department;
 	private String division;
@@ -55,10 +55,10 @@ public class Lecture {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getGrade() {
+	public String getGrade() {
 		return grade;
 	}
-	public void setGrade(int grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 	public String getSchool() {

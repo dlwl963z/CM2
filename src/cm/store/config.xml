@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
     
 <configuration>
+	<properties resource="cm/store/datasource/properties"/>
 <typeAliases>
-	<typeAlias type="domain.Lecture" alias="Lecture"/>
+	<typeAlias type="cm.domain.Lecture" alias="Lecture"/>
+	<typeAlias type="cm.domain.ClassTIme" alias="ClassTIme"/>
+	<typeAlias type="cm.domain.Comment" alias="Comment"/>
+	<typeAlias type="cm.domain.Building" alias="Building"/>
+	<typeAlias type="cm.domain.Requirement" alias="Requirement"/>
+	<typeAlias type="cm.domain.Timetable" alias="Timetable"/>
+	<typeAlias type="cm.domain.User" alias="User"/>
+	<typeAlias type="cm.domain.Wishlist" alias="Wishlist"/>
+	<typeAlias type="cm.domain.Lecture" alias="Lecture"/>
+	<typeAlias type="cm.domain.Lecture" alias="Lecture"/>
+	
 </typeAliases>
 
 	<environments default="development"> 
 		<environment id="development">
 			<transactionManager type="JDBC"/>
 				<dataSource type="POOLED"> 
-					<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-					<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-					<property name="username" value="scott"/>
-					<property name="password" value="tiger"/>
+					<property name="driver" value="${driver}"/>
+					<property name="url" value="${url}"/>
+					<property name="username" value="${username}"/>
+					<property name="password" value="${password}"/>
 				</dataSource>
 		</environment>
 	</environments>
 <mappers>
-	<mapper resource="mapper/ManageLectureMapper.xml"/>
+	<mapper resource="store/mapper/ManageLectureMapper.xml"/>
 </mappers>
 </configuration>

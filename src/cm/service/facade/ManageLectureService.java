@@ -17,7 +17,7 @@ public interface ManageLectureService {
 	
 	List<Lecture> selectLectureList(String school,String department,int year,String division,String lectureName);
 	
-	List<String> selectLectureDetail(int lectureId);
+	Lecture selectLectureDetail(int lectureId);
 	
 	List<Building> selectBuildings(int lectureId);
 	

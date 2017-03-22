@@ -16,7 +16,7 @@
  			
  			<association property="classTime" column="class_time_id"
  			select="classTimeMap.searchClassTimeBylectureId"
- 			javaType="classTime" jdbcType="NUMERIC"/>
+ 			javaType="classTime" jdbcType=""/>
  			<association property="professor" column="professor_id"
  			select="professorMap.searchProfessor"
  			javaType="professor" jdbcType="NUMERIC"/>
@@ -57,19 +57,19 @@
  		SELECT class_time_id, lecture_id, first_day, first_time, second_day, second_time,
  		 third_day, third_time, fourth_day, fourth_time, fifth_day, fifth_time, sixth_day, sixth_time
  		FROM class_time_tb
- 		WHERE lecture_id = #{lecture_id}
+ 		WHERE lecture_id = #{id}
  	</select>
  	
  	<select id="searchProfessor" resultMap="professorMap">
  		SELECT professor_id,professor_name, school, department, email
  		FROM professor_tb
- 		WHERE professor_id = #{professor_id}
+ 		WHERE professor_id = #{id}
  	</select>
  	
  	<select id="searchBuildings" resultType="Building" resultMap="LectureMap">
  		SELECT b.building_id,b.building_name,b.latitude, b.room_num, b.longitude
  		FROM lecture_classroom_tb l, building_tb b
- 		WHERE b.building_id=l.building_id AND l.lecture_id = #{lecture_id}
+ 		WHERE b.building_id=l.building_id AND l.lecture_id = #{id}
  	</select>
  	
  	<select id="searchSchoolAll" resultMap="LectureMap">
