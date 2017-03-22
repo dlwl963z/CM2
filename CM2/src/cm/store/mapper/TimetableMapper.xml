@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="cm.store.mapper.TimetableMapper">
+  
+  	<resultMap type="Timetable" id="TimetableMap">
+  		
+  		<id property="id" column="Timetable_id" />
+		<id property="registerYear" column="registeryear" />
+		  		
+  		<result property="name" column="Timetable_name" />
+  		<result property="semester" column="semester"/>
+  		
+  		<collection property="lectures" column="lecture_id" ofType="Lecture"
+  		select="cm.store.mapper.TimetableMapper.searchLectureTimetable" javaType="ArrayList"
+  		jdbcType="NUMERIC" />
+  		
+  	</resultMap>
+  	
+  	<resultMap type="Lecture" id="LetureMap">
+		<id property="id" column="lecture_id" />
+		
+  	
+  	</resultMap>
+  	
+  	
+  <insert id="insertLectureTimetable" parameterType="map" >
+	INSERT INTO
+  	openedlecture_timetable_tb(timetable_id, lecture_id)
+  	values(#{timeId2}, #{list2.id})
+  </insert>
+  	
+  <select id="searchLectureTimetable" parameterType="int" resultMap="TimetableMap">
+  	SELECT lecture_id FROM openedlecture_timetable_tb WHERE timetable_id=#{id}  	
+  </select>
+  <!--  resultMap은 select시  DB로부터 나오는 값들을 담을때 변수에 대입하는 값들을 정해두는것을 말한다  -->
+  	
+  <delete id="deleteLectureTimetable">
+  	DELETE FROM openedlecture_timetable_tb WHERE timetable_id=#{timeId}, lecture_id= 
+  </delete>
+  	
+  <delete id="deleteTimetable" parameterType="int">
+  	DELETE FROM Timetable_tb WHERE timetable_id=#{timeId}
+  </delete>
+  
+  <insert id="createTimetable" >
+  	INSERT INTO Timetable_tb(timetable_name, timetable_id, user_id, registeryear, semester)
+	values(#{name}, timetable_id_seq, '%${user_id}', #{registerYear}, #{semester})
+  </insert>
+  	
+  	
+  </mapper>
