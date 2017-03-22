@@ -1,0 +1,3 @@
+	Boolean insertLectureTimetable(int timeId,List<Lecture> list);
+// 여기서 timeid지움
+	
